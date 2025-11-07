@@ -5,8 +5,8 @@ const LS = {
 };
 
 // ✅ 先放預設值（你也可以稍後在「設定」頁貼上覆蓋）
-if (!localStorage.getItem(LS.url))  localStorage.setItem(LS.url,  'https://script.google.com/macros/s/REPLACE/exec'); // ← 換成你的 /exec
-if (!localStorage.getItem(LS.key))  localStorage.setItem(LS.key,  'kP4xVn7tQ9aR2wS8dJ6mF0bB3uL5zC1'); // ← 我幫你生的 API_KEY
+if (!localStorage.getItem(LS.url))  localStorage.setItem(LS.url,  'https://script.google.com/macros/s/AKfycbwfGCKI82qTqRt4ZS_kGr4yaMeZFOhPLMoP3c2r1hNTuUMv1d3c_XA4uGu1MVip77--/exec'); // ← 換成你的 /exec
+if (!localStorage.getItem(LS.key))  localStorage.setItem(LS.key,  'reginalinfinancesecret'); // ← 我幫你生的 API_KEY
 
 const $ = s => document.querySelector(s);
 const fmt  = n => (isNaN(n) ? '—' : Number(n).toLocaleString('zh-TW', {maximumFractionDigits: 0}));
@@ -122,3 +122,4 @@ $('#btnSaveCfg').onclick = ()=>{
 
 // 首頁先載一次
 loadDashboard();
+
