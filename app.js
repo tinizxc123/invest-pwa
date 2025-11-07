@@ -122,4 +122,3 @@ $('#btnSaveCfg').onclick = ()=>{
 
 // 首頁先載一次
 loadDashboard();
-
