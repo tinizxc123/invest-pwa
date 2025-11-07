@@ -5,7 +5,7 @@ const LS = {
 };
 
 // ✅ 先放預設值（你也可以稍後在「設定」頁貼上覆蓋）
-if (!localStorage.getItem(LS.url))  localStorage.setItem(LS.url,  'https://script.google.com/macros/s/AKfycbwfGCKI82qTqRt4ZS_kGr4yaMeZFOhPLMoP3c2r1hNTuUMv1d3c_XA4uGu1MVip77--/exec'); // ← 換成你的 /exec
+if (!localStorage.getItem(LS.url))  localStorage.setItem(LS.url,  'https://script.google.com/macros/s/AKfycbxYEN2UGZjM5bzMOI4zSdPITo-KFDUx3LcSw62cL3n6Xj9bydOv2qCKX3HObE4flSU8/exec'); // ← 換成你的 /exec
 if (!localStorage.getItem(LS.key))  localStorage.setItem(LS.key,  'reginalinfinancesecret'); // ← 我幫你生的 API_KEY
 
 const $ = s => document.querySelector(s);
