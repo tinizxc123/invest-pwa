@@ -1,0 +1,9 @@
+{
+  "name": "投資儀表板",
+  "short_name": "投資儀表板",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": []
+}

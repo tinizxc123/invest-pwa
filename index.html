@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>投資儀表板</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0}
+    header{background:#0ea5e9;color:#fff;padding:14px 16px}
+    .tabs{display:flex;border-bottom:1px solid #eee}
+    .tab{flex:1;text-align:center;padding:12px;cursor:pointer}
+    .tab.active{border-bottom:2px solid #0ea5e9;color:#0ea5e9;font-weight:700}
+    .screen{display:none;padding:16px}
+    .screen.active{display:block}
+    .card{border:1px solid #eee;border-radius:10px;padding:12px;margin:10px 0}
+    .row{display:flex;justify-content:space-between;margin:6px 0}
+    input,select,button{font-size:16px}
+    input,select{padding:10px;border:1px solid #ddd;border-radius:8px;width:100%}
+    button{padding:10px 14px;border-radius:8px;border:0;background:#0ea5e9;color:#fff}
+    .grid{display:grid;grid-template-columns:1fr 1fr; gap:10px}
+    .posUp{color:#16a34a}.posDn{color:#dc2626}
+  </style>
+</head>
+<body>
+  <header>投資儀表板（PWA）</header>
+  <nav class="tabs">
+    <div class="tab active" data-to="dash">儀表板</div>
+    <div class="tab" data-to="trades">交易</div>
+    <div class="tab" data-to="positions">持倉</div>
+    <div class="tab" data-to="settings">設定</div>
+  </nav>
+
+  <section id="dash" class="screen active">
+    <div class="card">
+      <div class="row"><div>總市值（TWD）</div><div id="totalValue">—</div></div>
+      <div class="row"><div>投入（TWD）</div><div id="invested">—</div></div>
+      <div class="row"><div>總損益（TWD）</div><div id="pnl">—</div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div>目標（兩年淨賺）</div><div id="target">—</div></div>
+      <div class="row"><div>目前達成</div><div id="now">—</div></div>
+      <div class="row"><div>達成率</div><div id="rate">—</div></div>
+      <div class="row"><div>領先 / 落後</div><div id="leadlag">—</div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div>本月投入（USD）</div><div id="mBuy">—</div></div>
+      <div class="row"><div>本月賣出（USD）</div><div id="mSell">—</div></div>
+      <div class="row"><div>本月股息（USD）</div><div id="mDiv">—</div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div>Fear & Greed</div><div id="fg">—</div></div>
+      <div id="fgNote" style="font-size:12px;color:#666;margin-top:6px"></div>
+    </div>
+  </section>
+
+  <section id="trades" class="screen">
+    <div class="card">
+      <h3>新增交易</h3>
+      <div class="grid">
+        <input id="tDate" type="date" />
+        <input id="tTicker" placeholder="代號 (VOO/0050/...)" />
+        <select id="tSide">
+          <option>BUY</option><option>SELL</option><option>DIV</option>
+        </select>
+        <input id="tQty" type="number" inputmode="decimal" placeholder="數量 (DIV 可留 0)" />
+        <input id="tPrice" type="number" inputmode="decimal" placeholder="成交價 USD" />
+        <input id="tFee" type="number" inputmode="decimal" placeholder="手續費 USD" />
+        <input id="tFx" type="number" inputmode="decimal" placeholder="匯率 USD→TWD" value="32" />
+        <input id="tNote" placeholder="備註 (選填)" />
+      </div>
+      <div style="margin-top:10px"><button id="btnAdd">儲存</button></div>
+      <div id="addMsg" style="margin-top:8px;font-size:12px;color:#666"></div>
+    </div>
+
+    <div class="card">
+      <h3>交易列表</h3>
+      <div id="tradesList" style="font-size:14px"></div>
+    </div>
+  </section>
+
+  <section id="positions" class="screen">
+    <div class="card">
+      <h3>持倉</h3>
+      <div id="posList" style="font-size:14px"></div>
+    </div>
+  </section>
+
+  <section id="settings" class="screen">
+    <div class="card">
+      <div class="row"><div>API URL</div></div>
+      <input id="apiUrl" placeholder="https://script.google.com/macros/s/xxx/exec" />
+      <div class="row"><div>API KEY</div></div>
+      <input id="apiKey" placeholder="同 Apps Script 的 API_KEY" />
+      <div style="margin-top:10px"><button id="btnSaveCfg">儲存設定</button></div>
+      <div id="cfgMsg" style="font-size:12px;color:#666;margin-top:8px"></div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js'); }
+  </script>
+</body>
+</html>
